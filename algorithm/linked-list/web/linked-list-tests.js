@@ -260,3 +260,24 @@ describe('has Circle', function() {
     expect(hasCircle).toEqual(true);
   });
 })
+
+describe('concat two order linked list', function() {
+  var list1 = null;
+  var list2 = null
+
+  beforeEach(function() {
+    list1 = new List();
+    list1.add(1);
+    list1.add(4);
+    list1.add(7);
+    list2 = new List();
+    list2.add(2);
+    list2.add(3);
+    list2.add(6);
+  });
+
+  it('concated is orderd list', function() {
+    const list3 = list1.concat(list2)
+    expect(list3.toArr()).toEqual([1, 2, 3, 4, 6, 7])
+  });
+})

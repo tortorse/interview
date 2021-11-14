@@ -114,6 +114,8 @@ export class List {
     travere(this.start)
   }
 
+
+
   circle() {
     let values = {}
     let hasCircle = false
@@ -124,6 +126,45 @@ export class List {
       values[node.data] = true
     })
     return hasCircle
+  }
+
+  toArr() {
+    let arr = []
+    this.each((node) => {
+      arr.push(node.data)
+    })
+    return arr
+  }
+
+  concat(list) {
+    const res = new List()
+    let cur1 = this.start
+    let cur2 = list.start
+
+    while (cur1 || cur2) {
+      if (!cur1) {
+        res.add(cur2.data)
+        cur2 = cur2.next
+        continue
+      }
+
+      if (!cur2) {
+        res.add(cur1.data)
+        cur1 = cur1.next
+        continue
+      }
+
+      if (cur1.data < cur2.data) {
+        res.add(cur1.data)
+        cur1 = cur1.next
+      } else {
+        res.add(cur2.data)
+        cur2 = cur2.next
+      }
+    }
+
+    console.log(res)
+    return res
   }
 }
 
