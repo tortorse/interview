@@ -299,3 +299,24 @@ describe('deleteReverseN tests', function() {
     expect(list.toArr()).toEqual(['ONE', 'TWO', 'THREE', 'FIVE'])
   })
 })
+
+describe('middle tests', function() {
+  var list = null;
+
+  beforeEach(function() {
+    list = new List();
+    list.add('ONE');
+    list.add('TWO');
+    list.add('THREE');
+    list.add('FOUR');
+  });
+
+  it('middle odd number', function() {
+    expect(list.middle()).toEqual(['TWO', 'THREE'])
+  })
+
+  it('middle even number', function() {
+    list.add('FIVE')
+    expect(list.middle()).toEqual(['THREE'])
+  })
+})

@@ -134,6 +134,37 @@ export class List {
     traverse(this.start)
   }
 
+  middle() {
+    if (!this.start) {
+      return
+    }
+
+    let i = 1
+    let j = 1
+    let middle = []
+    function traverse(node) {
+      if (node.next) {
+        i++
+        traverse(node.next, node)
+      }
+
+      if (j * 2 === i) {
+        middle.unshift(node.data)
+      }
+
+      if ((j - 1) * 2 === i) {
+        middle.unshift(node.data)
+      }
+
+      if ((j - 1) * 2 + 1 === i) {
+        middle.unshift(node.data)
+      }
+      j++
+    }
+    traverse(this.start)
+    return middle
+  }
+
   circle() {
     let values = {}
     let hasCircle = false
