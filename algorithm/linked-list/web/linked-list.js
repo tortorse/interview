@@ -1,4 +1,4 @@
-class Node {
+export class Node {
   next
   data
 
@@ -8,7 +8,7 @@ class Node {
   }
 }
 
-class List {
+export class List {
   start = null; // 头结点
   end = null; // 尾节点
 
@@ -94,10 +94,10 @@ class List {
       cur = cur.next
     }
   }
-
 }
 
 window.List = List
+
 
 
 

@@ -1,0 +1,71 @@
+import { LRUCache, DoubleLinkedNode } from './lru-cache.js'
+
+describe('lrc cache from leetcode', function() {
+  const cache = new LRUCache(2)
+  it('should constructor', function() {
+    expect(cache).not.toBeNull()
+  })
+
+  it('put single tests', function() {
+    cache.put(1, 1)
+    expect(cache.start.data).toEqual(1)
+    expect(cache.start.next).toBeNull()
+    expect(cache.start.pre).toBeNull()
+    expect(cache.end.data).toEqual(1)
+    expect(cache.end.next).toBeNull()
+    expect(cache.end.pre).toBeNull()
+  })
+
+  it('put second tests', function() {
+    cache.put(2, 2)
+    expect(Object.keys(cache.values)).toEqual(['1', '2'])
+    expect(cache.start.data).toEqual(2)
+    expect(cache.start.next).not.toBeNull()
+    expect(cache.start.next.data).toEqual(1)
+    expect(cache.start.pre).toBeNull()
+    expect(cache.end.data).toEqual(1)
+    expect(cache.end.next).toBeNull()
+    expect(cache.end.pre).not.toBeNull()
+    expect(cache.end.pre.data).toEqual(2)
+    expect(cache.get(1)).toEqual(1)
+    // 使用后的节点放到链表头部
+    expect(cache.start.data).toEqual(1)
+    expect(cache.start.next).not.toBeNull()
+    expect(cache.start.next.data).toEqual(2)
+    expect(cache.start.pre).toBeNull()
+    expect(cache.end.data).toEqual(2)
+    expect(cache.end.next).toBeNull()
+    expect(cache.end.pre).not.toBeNull()
+    expect(cache.end.pre.data).toEqual(1)
+    cache.display()
+  })
+
+  it('put third tests', function() {
+    cache.put(3, 3)
+    expect(Object.keys(cache.values)).toEqual(['1', '3'])
+    expect(cache.start.data).toEqual(3)
+    expect(cache.start.next).not.toBeNull()
+    expect(cache.start.next.data).toEqual(1)
+    expect(cache.start.pre).toBeNull()
+    expect(cache.end.data).toEqual(1)
+    expect(cache.end.next).toBeNull()
+    expect(cache.end.pre).not.toBeNull()
+    expect(cache.end.pre.data).toEqual(3)
+    expect(cache.get(2)).toEqual(-1)
+  })
+
+  it('put forth tests', function() {
+    cache.put(4, 4)
+    expect(Object.keys(cache.values)).toEqual(['3', '4'])
+    expect(cache.start.data).toEqual(4)
+    expect(cache.start.next).not.toBeNull()
+    expect(cache.start.next.data).toEqual(3)
+    expect(cache.start.pre).toBeNull()
+    expect(cache.end.data).toEqual(3)
+    expect(cache.end.next).toBeNull()
+    expect(cache.end.pre).not.toBeNull()
+    expect(cache.end.pre.data).toEqual(4)
+    expect(cache.get(3)).toEqual(3)
+    expect(cache.get(4)).toEqual(4)
+  })
+})
