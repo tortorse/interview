@@ -94,6 +94,25 @@ export class List {
       cur = cur.next
     }
   }
+
+  reverse() {
+    if (!this.start) {
+      return
+    }
+    const self = this
+    function travere(node, pre = null) {
+      if (node.next) {
+        travere(node.next, node)
+      } else {
+        self.start = node
+      }
+      node.next = pre
+      if (!pre) {
+        self.end = node
+      }
+    }
+    travere(this.start)
+  }
 }
 
 window.List = List

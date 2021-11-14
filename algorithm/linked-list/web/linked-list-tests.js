@@ -220,3 +220,24 @@ describe('each tests for the JavaScript linked list', function() {
   });
 
 });
+
+describe('reverse tests from the JavaScript lined list', function() {
+  var list = null;
+
+  beforeEach(function() {
+    list = new List();
+    list.add('ONE');
+    list.add('TWO');
+    list.add('THREE');
+    list.add('FOUR');
+    list.add('FIVE');
+    list.add('SIX');
+  });
+
+  it('should in another order using reverse', function() {
+    list.reverse()
+    expect(list.item(1).data).toEqual('SIX');
+    expect(list.item(2).data).toEqual('FIVE');
+    expect(list.item(6).data).toEqual('ONE');
+  });
+})
