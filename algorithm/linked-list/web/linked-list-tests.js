@@ -241,3 +241,22 @@ describe('reverse tests from the JavaScript lined list', function() {
     expect(list.item(6).data).toEqual('ONE');
   });
 })
+
+describe('has Circle', function() {
+  var list = null;
+
+  beforeEach(function() {
+    list = new List();
+    list.add('ONE');
+    list.add('TWO');
+    list.add('THREE');
+    list.add('FOUR');
+    list.add('FIVE');
+    list.add('ONE');
+  });
+
+  it('should hasCircle', function() {
+    const hasCircle = list.circle()
+    expect(hasCircle).toEqual(true);
+  });
+})

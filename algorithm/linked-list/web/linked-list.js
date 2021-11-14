@@ -113,6 +113,18 @@ export class List {
     }
     travere(this.start)
   }
+
+  circle() {
+    let values = {}
+    let hasCircle = false
+    this.each((node) => {
+      if (values[node.data]) {
+        hasCircle = true
+      }
+      values[node.data] = true
+    })
+    return hasCircle
+  }
 }
 
 window.List = List
