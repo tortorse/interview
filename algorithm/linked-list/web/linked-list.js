@@ -114,7 +114,25 @@ export class List {
     travere(this.start)
   }
 
+  deleteReverseN(n) {
+    if (!this.start) {
+      return
+    }
 
+    let i = 0
+    function traverse(node, pre) {
+      if (node.next) {
+        traverse(node.next, node)
+      }
+      i++
+      if (i === n) {
+        if (node.next && pre) {
+          pre.next = node.next
+        }
+      }
+    }
+    traverse(this.start)
+  }
 
   circle() {
     let values = {}

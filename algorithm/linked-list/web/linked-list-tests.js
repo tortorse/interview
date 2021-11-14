@@ -281,3 +281,21 @@ describe('concat two order linked list', function() {
     expect(list3.toArr()).toEqual([1, 2, 3, 4, 6, 7])
   });
 })
+
+describe('deleteReverseN tests', function() {
+  var list = null;
+
+  beforeEach(function() {
+    list = new List();
+    list.add('ONE');
+    list.add('TWO');
+    list.add('THREE');
+    list.add('FOUR');
+    list.add('FIVE');
+  });
+
+  it('deleteReverseN success', function() {
+    list.deleteReverseN(2)
+    expect(list.toArr()).toEqual(['ONE', 'TWO', 'THREE', 'FIVE'])
+  })
+})
