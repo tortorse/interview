@@ -152,3 +152,30 @@ func (node *Node) LastN(n int) *Node {
 		fast = fast.Next
 	}
 }
+
+func Merge(node1, node2 *Node) *Node {
+	var head, insert *Node
+	if node1.Value > node2.Value {
+		head, insert = node2, node1
+	} else {
+		head, insert = node1, node2
+	}
+
+	cur := head
+	for {
+		if insert == nil {
+			return head
+		}
+
+		if cur.Next == nil {
+			cur.Next = insert
+			return head
+		}
+
+		if cur.Next.Value < insert.Value {
+			cur = cur.Next
+		} else {
+			cur.Next, insert.Next, insert = insert, cur.Next, insert.Next
+		}
+	}
+}

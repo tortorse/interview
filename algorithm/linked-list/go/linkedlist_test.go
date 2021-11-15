@@ -209,3 +209,14 @@ func TestLastN(t *testing.T) {
 		}
 	}
 }
+
+func TestMerge(t *testing.T) {
+	node1 := CreateNode(1, CreateNode(5, nil))
+	node2 := CreateNode(3, CreateNode(6, nil))
+	merged := Merge(node1, node2)
+	want := "1 -> 3 -> 5 -> 6"
+	res := merged.String()
+	if res != want {
+		t.Fatalf("Merge res %s shoud return %s", res, want)
+	}
+}
