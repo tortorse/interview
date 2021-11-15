@@ -36,3 +36,64 @@ func TestString(t *testing.T) {
 		t.Fatalf("three node to string should be %s, indeed return %s", want3, str3)
 	}
 }
+
+func TestReverse(t *testing.T) {
+	wants := []struct {
+		Node *Node
+		Str  string
+	}{
+		{
+			Node: CreateNode(1, nil),
+			Str:  "1",
+		},
+		{
+			Node: CreateNode(2, CreateNode(1, nil)),
+			Str:  "1 -> 2",
+		},
+		{
+			Node: CreateNode(3, CreateNode(2, CreateNode(1, nil))),
+			Str:  "1 -> 2 -> 3",
+		},
+	}
+
+	for i, want := range wants {
+		str := want.Node.Reverse().String()
+		if str != want.Str {
+			t.Fatalf("return%d %s want %s", i, str, want.Str)
+		}
+	}
+}
+
+func TestReverse1(t *testing.T) {
+	wants := []struct {
+		Node *Node
+		Str  string
+	}{
+		{
+			Node: CreateNode(1, nil),
+			Str:  "1",
+		},
+		{
+			Node: CreateNode(2, CreateNode(1, nil)),
+			Str:  "1 -> 2",
+		},
+		{
+			Node: CreateNode(3, CreateNode(2, CreateNode(1, nil))),
+			Str:  "1 -> 2 -> 3",
+		},
+	}
+
+	for i, want := range wants {
+		str := want.Node.Reverse1().String()
+		if str != want.Str {
+			t.Fatalf("return%d %s want %s", i, str, want.Str)
+		}
+	}
+}
+
+func TestExchange(t *testing.T) {
+	a := 1
+	b := 2
+
+	a, b = b, a
+}
