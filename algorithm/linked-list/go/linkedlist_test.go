@@ -182,3 +182,30 @@ func TestMiddle(t *testing.T) {
 		}
 	}
 }
+
+func TestLastN(t *testing.T) {
+	node := CreateNode(3, CreateNode(2, CreateNode(1, nil)))
+	wants := []struct {
+		Last  int
+		Value int
+	}{
+		{
+			Last:  1,
+			Value: 1,
+		},
+		{
+			Last:  2,
+			Value: 2,
+		},
+		{
+			Last:  3,
+			Value: 3,
+		},
+	}
+
+	for i, want := range wants {
+		if node.LastN(want.Last).Value != want.Value {
+			t.Fatalf("lastN error %d, want %d", i, want.Value)
+		}
+	}
+}

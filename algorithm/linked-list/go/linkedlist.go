@@ -132,3 +132,23 @@ func (node *Node) Middle() *Node {
 		fast = fast.Next.Next
 	}
 }
+
+func (node *Node) LastN(n int) *Node {
+	slow := node
+	fast := node
+
+	for i := 1; i < n; i++ {
+		if fast.Next == nil {
+			return nil
+		}
+		fast = fast.Next
+	}
+
+	for {
+		if slow.Next == nil || fast.Next == nil {
+			return slow
+		}
+		slow = slow.Next
+		fast = fast.Next
+	}
+}
