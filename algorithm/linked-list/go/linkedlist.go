@@ -179,3 +179,16 @@ func Merge(node1, node2 *Node) *Node {
 		}
 	}
 }
+
+// LRU 缓存
+
+type DNode struct {
+	Next  *DNode
+	Pre   *DNode
+	Value int
+}
+type LatestRecentlyUsed struct {
+	Capacity int
+	Head     *DNode
+	Tail     *DNode
+}
