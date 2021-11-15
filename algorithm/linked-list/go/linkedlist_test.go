@@ -156,3 +156,29 @@ func TestCircle(t *testing.T) {
 		}
 	}
 }
+
+func TestMiddle(t *testing.T) {
+	wants := []struct {
+		node   *Node
+		middle int
+	}{
+		{
+			node:   CreateNode(1, nil),
+			middle: 1,
+		},
+		{
+			node:   CreateNode(2, CreateNode(1, nil)),
+			middle: 2,
+		},
+		{
+			node:   CreateNode(3, CreateNode(2, CreateNode(1, nil))),
+			middle: 2,
+		},
+	}
+
+	for i, want := range wants {
+		if want.node.Middle().Value != want.middle {
+			t.Fatalf("middle errror %d want %d", i, want.middle)
+		}
+	}
+}

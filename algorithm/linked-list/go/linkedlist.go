@@ -118,3 +118,17 @@ func (node *Node) Circle() bool {
 		}
 	}
 }
+
+func (node *Node) Middle() *Node {
+	slow := node
+	fast := node
+
+	for {
+		if slow.Next == nil || fast.Next == nil || fast.Next.Next == nil {
+			return slow
+		}
+
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+}
