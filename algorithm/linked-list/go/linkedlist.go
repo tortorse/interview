@@ -86,3 +86,35 @@ func (node *Node) ReverseNearby() *Node {
 	}
 	return head
 }
+
+// 加一个dumy节点
+func (node *Node) ReverseNearby1() *Node {
+	dumy := CreateNode(0, node)
+	cur := dumy
+
+	for {
+		if cur == nil || cur.Next == nil || cur.Next.Next == nil {
+			break
+		} else {
+			cur.Next, cur.Next.Next, cur.Next.Next.Next = cur.Next.Next, cur.Next.Next.Next, cur.Next
+			cur = cur.Next.Next
+		}
+	}
+
+	return dumy.Next
+}
+
+func (node *Node) Circle() bool {
+	slow := node
+	fast := node
+	for {
+		if slow.Next == nil || fast.Next == nil || fast.Next.Next == nil {
+			return false
+		}
+		slow = slow.Next
+		fast = fast.Next.Next
+		if slow == fast {
+			return true
+		}
+	}
+}

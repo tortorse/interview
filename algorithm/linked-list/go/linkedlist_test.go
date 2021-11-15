@@ -115,9 +115,44 @@ func TestReverseNearby(t *testing.T) {
 	}
 
 	for i, want := range wants {
-		str := want.Node.ReverseNearby().String()
+		str := want.Node.ReverseNearby1().String()
 		if str != want.Str {
 			t.Fatalf("return%d %s want %s", i, str, want.Str)
+		}
+	}
+}
+
+func TestCircle(t *testing.T) {
+	node1 := CreateNode(1, nil)
+	node2 := CreateNode(2, node1)
+	node3 := CreateNode(3, node2)
+	node1.Next = node3
+
+	wants := []struct {
+		Node   *Node
+		Circle bool
+	}{
+		{
+			Node:   CreateNode(1, nil),
+			Circle: false,
+		},
+		{
+			Node:   CreateNode(2, CreateNode(1, nil)),
+			Circle: false,
+		},
+		{
+			Node:   CreateNode(3, CreateNode(2, CreateNode(1, nil))),
+			Circle: false,
+		},
+		{
+			Node:   node3,
+			Circle: true,
+		},
+	}
+
+	for i, want := range wants {
+		if want.Node.Circle() != want.Circle {
+			t.Fatalf("Circle error %d", i)
 		}
 	}
 }
