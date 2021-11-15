@@ -55,3 +55,34 @@ func (node *Node) Reverse1() *Node {
 		}
 	}
 }
+
+func (node *Node) ReverseNearby() *Node {
+	var pre *Node
+	var pre1 *Node
+	head := node
+	cur := node
+	index := 0
+	for {
+		if cur == nil {
+			break
+		} else {
+			index++
+			next := cur.Next
+			if index%2 == 0 {
+				cur.Next = pre
+				if index == 2 {
+					head = cur
+				}
+				pre.Next = next
+				if pre1 != nil {
+					pre1.Next = cur
+				}
+				pre1 = pre
+			}
+
+			pre = cur
+			cur = next
+		}
+	}
+	return head
+}
