@@ -38,6 +38,7 @@ func (s *ArrayStack) Top() interface{} {
 	return s.values[s.Length-1]
 }
 
+// 括号匹配
 func CheckMultiBracket(str string) bool {
 	len := len(str)
 	if len <= 0 {
@@ -62,4 +63,35 @@ func CheckMultiBracket(str string) bool {
 	}
 
 	return s.Length == 0
+}
+
+// 浏览器前进后退
+type Navigator struct {
+	Url  string
+	his1 *ArrayStack
+	his2 *ArrayStack
+}
+
+func NewNavigator() *Navigator {
+	n := Navigator{
+		his1: NewArrayStack(),
+		his2: NewArrayStack(),
+	}
+	return &n
+}
+
+func (n *Navigator) Open(url string) {
+	n.Url = url
+	n.his1.Push(url)
+}
+
+func (n *Navigator) Back() {
+	url := n.his1.Pop().(string)
+	n.his2.Push(url)
+	n.Url = n.his1.Top().(string)
+}
+
+func (n *Navigator) Forward() {
+	n.Url = n.his2.Pop().(string)
+	n.his1.Push(n.Url)
 }
